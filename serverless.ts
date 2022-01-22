@@ -1,7 +1,7 @@
 import type { AWS } from '@serverless/typescript';
 
 const serverlessConfiguration: AWS = {
-  service: 'pdftextsearch',
+  service: 'scrapeContent',
   frameworkVersion: '2',
   custom: {
     webpack: {
@@ -19,16 +19,17 @@ const serverlessConfiguration: AWS = {
     },
     environment: {
       AWS_NODEJS_CONNECTION_REUSE_ENABLED: '1',
+      AWS_BUCKET_NAME: 'scrape-data-at-56'
     },
   },
   functions: {
-    findKeywordInPDF: {
-      handler: 'handler.findKeywordInPDF',
+    scrapeContent: {
+      handler: 'handler.scrapeContent',
       events: [
         {
           http: {
             method: 'get',
-            path: 'findKeywordInPDF',
+            path: 'scrapeContent',
           }
         }
       ]
